@@ -240,7 +240,7 @@ class core extends PluginBase implements Listener{
 			$player->sendMessage($block->x.", ".$block->y.", ".$block->z);
 		}
 
-		if($item->getId() == 80 && $block->y >= 99 && $player->getGamemode() == 0){
+		if($item->getId() == 80 && $block->y >= 98 && $player->getGamemode() == 0){
 
 			$event->setCancelled(true);
 		}
@@ -279,6 +279,10 @@ class core extends PluginBase implements Listener{
 		}
 
 		if($item->getid() == 256){
+			if($block->getId() == 2){
+				$e->setCancelled(true);
+			}
+
 			if($block->getId() == 78){
 				$block->onBreak(Item::get(0, 0));
 				$inv->addItem(Item::get(332, 0, 3));
