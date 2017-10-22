@@ -7,6 +7,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 
 # Event
+use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
@@ -58,7 +59,7 @@ class core extends PluginBase implements Listener{
 	public function PlayerJoinEvent(PlayerJoinEvent $event){
 		$player = $event->getPlayer();
 		$player->teleport($player->getSpawn());
-		$player->setGamemode(2);
+		$player->setGamemode(0);
 		$player->setXpLevel(0);
 		$inv = $player->getInventory();
 		$inv->clearAll();
@@ -80,6 +81,12 @@ class core extends PluginBase implements Listener{
 		$player = $event->getPlayer();
 		$name = $player->getName();
 		unset($this->player[$name]);
+	}
+
+	public function Break(BlockBreakEvent $event){
+		if($player->getGamemode() == 0){
+			$event->setCancelled(true);
+		}
 	}
 
 	public function ProjectileHitEvent(ProjectileHitEvent $event){
@@ -233,7 +240,7 @@ class core extends PluginBase implements Listener{
 			$player->sendMessage($block->x.", ".$block->y.", ".$block->z);
 		}
 
-		if($item->getId() == 80 && $block->y >= 99 && $player->getGamemode() == 2){
+		if($item->getId() == 80 && $block->y >= 99 && $player->getGamemode() == 0){
 
 			$event->setCancelled(true);
 		}
