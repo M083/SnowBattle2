@@ -282,7 +282,7 @@ class core extends PluginBase implements Listener{
 
 		if($item->getid() == 256){
 			if($block->getId() == 2){
-				$e->setCancelled(true);
+				$event->setCancelled(true);
 			}
 
 			if($block->getId() == 78){
