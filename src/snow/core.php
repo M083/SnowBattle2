@@ -84,7 +84,7 @@ class core extends PluginBase implements Listener{
 	}
 
 	public function Break(BlockBreakEvent $event){
-		if($player->getGamemode() == 0){
+		if($event->getPlayer()->getGamemode() == 0){
 			$event->setCancelled(true);
 		}
 	}
