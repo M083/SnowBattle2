@@ -153,6 +153,8 @@ class core extends PluginBase implements Listener{
 				}
 				$d->setXpLevel($d->getXpLevel()+1);
 				$p->setXpLevel(0);
+			}else{
+				$e->setCancelled(true);
 			}
 		}
 	}
