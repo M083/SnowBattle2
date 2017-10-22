@@ -35,7 +35,6 @@ class core extends PluginBase implements Listener{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		//ここに移動先の座標を配列で入れる
 		$pos = [
-			[-123, 69, 64],
 			[-134, 69, 57],
 			[-128, 70, 45],
 			[-140, 70, 33],
@@ -267,7 +266,7 @@ class core extends PluginBase implements Listener{
 			$inv->addItem(Item::get(332, 0, 16));
 			$inv->addItem(Item::get(256, 0));
 
-			$player->setNameTagVisible(false);
+			$player->setNameTag("");
 
 			$player->sendMessage("§2アイテムを配布したぞ！\n§2今すぐ雪玉を投げに行こう！");
 		}
