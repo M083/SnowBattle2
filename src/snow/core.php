@@ -124,9 +124,9 @@ class core extends PluginBase implements Listener{
 	public function resetSnow($level){
 		$block = Block::get(0);
 		echo "雪をリセットしています";
-		for($xx = self::MIN_X; $xx < self::MAX_X; $xx++){
-			for($yy = self::MIN_Y; $yy < self::MAX_Y; $yy++){
-				for($zz = self::MIN_Z; $zz < self::MAX_Z; $zz++){
+		for($xx = self::MIN_X; $xx <= self::MAX_X; $xx++){
+			for($yy = self::MIN_Y; $yy <= self::MAX_Y; $yy++){
+				for($zz = self::MIN_Z; $zz <= self::MAX_Z; $zz++){
 					$pos = clone $this->p;
 					$pos->setComponents($xx, $yy, $zz);
 					if($level->getBlock($pos)->getId() === 80){
