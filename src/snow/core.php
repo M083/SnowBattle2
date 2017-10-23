@@ -7,6 +7,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 
 # Event
+use pocketmine\event\level\LevelLoadEvent;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\LeavesDecayEvent;
 use pocketmine\event\entity\ProjectileHitEvent;
@@ -37,6 +38,14 @@ class core extends PluginBase implements Listener{
 	public $destroy = null;
 	public $anvil = null;
 	public $p = null;
+	public $firstLogin = true;
+
+	const MAX_X = -124;
+	const MAX_Z = 84;
+	const MIN_X = -179;
+	const MIN_Z = 17;
+	const MAX_Y = 100;
+	const MIN_Y = 62;
 
 	public static $nameList = [
 		"moyasan083" => "yudaruma334",
@@ -106,6 +115,28 @@ class core extends PluginBase implements Listener{
 			$player->setGamemode(1);
 		}
 		$pos->y += 1;
+		if($this->firstLogin){
+			$this->resetSnow($level);
+			$this->firstLogin = false;
+		}
+	}
+
+	public function resetSnow($level){
+		$block = Block::get(0);
+		echo "雪をリセットしています";
+		for($xx = self::MIN_X; $xx < self::MAX_X; $xx++){
+			for($yy = self::MIN_Y; $yy < self::MAX_Y; $yy++){
+				for($zz = self::MIN_Z; $zz < self::MAX_Z; $zz++){
+					$pos = clone $this->p;
+					$pos->setComponents($xx, $yy, $zz);
+					if($level->getBlock($pos)->getId() === 80){
+						$level->setBlock($pos, $block);
+						echo "・";
+					}
+				}
+			}
+		}
+		echo "\nリセットが完了しました\n";
 	}
 
 	public function PlayerQuitEvent(PlayerQuitEvent $event){
