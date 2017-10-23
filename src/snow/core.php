@@ -8,6 +8,7 @@ use pocketmine\event\Listener;
 
 # Event
 use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\block\LeavesDecayEvent;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
@@ -17,6 +18,7 @@ use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\player\PlayerLoginEvent;
 
 # Other
 use pocketmine\math\Vector3;
@@ -31,6 +33,14 @@ class core extends PluginBase implements Listener{
 
 	private $pos = [];
 	private $player = [];
+
+	public $destroy = null;
+	public $anvil = null;
+	public $p = null;
+
+	public static $nameList = [
+		"moyasan083" => "yudaruma334",
+	];
 
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -54,10 +64,24 @@ class core extends PluginBase implements Listener{
 			list($x, $y, $z) = $value;
 			$this->pos[] = new Vector3($x, $y, $z);
 		}
+		$v = new Vector3(0, 0, 0);
+		$this->destroy = new DestroyBlockParticle(clone $v, Block::get(80, 0));
+		$this->anvil = new AnvilFallSound(clone $v, 1);
+		$this->p = $v;
+	}
+
+	public function Login(PlayerLoginEvent $event){
+		$player = $event->getPlayer();
+		$name = $player->getName();
+		if(isset(self::$nameList[$name])){
+			$player->setDisplayName(self::$nameList[$name]);
+			$player->setNameTag(self::$nameList[$name]);
+		}
 	}
 
 	public function PlayerJoinEvent(PlayerJoinEvent $event){
 		$player = $event->getPlayer();
+		$name = $player->getName();
 		$player->teleport($player->getSpawn());
 		$player->setGamemode(0);
 		$player->setXpLevel(0);
@@ -89,14 +113,17 @@ class core extends PluginBase implements Listener{
 		}
 	}
 
+	public function leaves(LeavesDecayEvent $event){
+		$event->setCancelled(true);
+	}
+
 	public function ProjectileHitEvent(ProjectileHitEvent $event){
 		$entity = $event->getEntity();
 		if($entity instanceof Snowball){
-			$x = $entity->x;
-			$y = $entity->y;
-			$z = $entity->z;
 			$level = $this->getServer()->getDefaultLevel();
-			$level->addParticle(new DestroyBlockParticle(new Vector3($x, $y, $z), Block::get(80, 0)));
+			$des = clone $this->destroy;
+			$des->setComponents($entity->x, $entity->y, $entity->z);
+			$level->addParticle($des);
 		}
 	}
 
@@ -107,7 +134,8 @@ class core extends PluginBase implements Listener{
 				$level = $this->getServer()->getDefaultLevel();
 				$d = $event->getDamager();
 				$p = $event->getEntity();
-				$level->addSound(new AnvilFallSound($d, 1));
+				$sound = clone $this->anvil;
+				$level->addSound($this->anvil->setComponents($d->x, $d->y, $d->z));
 
 				$x1 = $d->x;
 				$y1 = $d->y;
@@ -139,7 +167,7 @@ class core extends PluginBase implements Listener{
 				$d_isDead = $this->isBattle($d->getName()) ? false : true;
 				$dead = $d_isDead ? "§7(dead)§f" : "";
 
-				$this->getServer()->broadCastMessage($d->getName().$dead." ➤➤ ".$p->getName()." (".$color.$dis."m§f)");
+				$this->getServer()->broadCastMessage($d->getDisplayName().$dead." ➤➤ ".$p->getDisplayName()." (".$color.$dis."m§f)");
 				if($d_isDead === false){
 					$inv = $d->getInventory();
 					$inv->addItem(Item::get(332, 0, 16));
@@ -198,8 +226,10 @@ class core extends PluginBase implements Listener{
 		$y = $entity->y;
 		$z = $entity->z;
 
-		$pos1 = new Vector3($x, $y, $z);
-		$pos2 = new Vector3($x, $y+1, $z);
+		$pos1 = clone $this->p;
+		$pos1->setComponents($x, $y, $z);
+		$pos2 = clone $this->p;
+		$pos2->setComponents($x, $y+1, $z);
 		$event->setKeepInventory(true);
 		$level = $entity->getLevel();
 		$block1 = $level->getBlock($pos1);
@@ -222,8 +252,10 @@ class core extends PluginBase implements Listener{
 		for($xx = -floor($snow/2); $xx < ceil($snow/2); $xx++){
 			for($yy = -floor($snow/2); $yy < ceil($snow/2); $yy++){
 				for($zz = -floor($snow/2); $zz < ceil($snow/2); $zz++){
-					$pos_1 = new Vector3(floor($xx+$x), floor($yy+$y), floor($zz+$z));
-					$pos_2 = new Vector3(floor($xx+$x), floor($yy+$y-1), floor($zz+$z));
+					$pos_1 = clone $this->p;
+					$pos_1->setComponents(floor($xx+$x), floor($yy+$y), floor($zz+$z));
+					$pos_2 = clone $this->p;
+					$pos_2->setComponents(floor($xx+$x), floor($yy+$y-1), floor($zz+$z));
 					if($level->getBlock($pos_1)->getId() == 0 && (!$level->getBlock($pos_2)->isTransparent() || $level->getBlock($pos_2)->getId() == 18 || $level->getBlock($pos_2)->getId() == 198)){
 						$level->setBlock($pos_1, $block);
 					}
@@ -292,9 +324,10 @@ class core extends PluginBase implements Listener{
 
 			if($block->getId() == 80){
 				$block->onBreak(Item::get(0, 0));
-				$inv->addItem(Item::get(332, 0, 16));
-				$inv->addItem(Item::get(332, 0, 16));
-				$inv->addItem(Item::get(332, 0, 16));
+				$ball = Item::get(332, 0, 16);
+				$inv->addItem(clone $ball);
+				$inv->addItem(clone $ball);
+				$inv->addItem(clone $ball);
 			}
 		}
 	}
