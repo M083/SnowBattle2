@@ -56,7 +56,8 @@ class core extends PluginBase implements Listener{
 		"tsukinomiya1206" => "mako427",
 		"EMOnemi" => "ikemenGO_",
 		"N0poh" => "popipapu",
-		"Parasect00" => "kirale_nisemono"
+		"Parasect00" => "kirale_nisemono",
+		"Pietro3939" => "Pietroganger"
 	];
 
 	public function onEnable(){
