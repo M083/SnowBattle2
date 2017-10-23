@@ -204,8 +204,12 @@ class core extends PluginBase implements Listener{
 
 				$d_isDead = $this->isBattle($d->getName()) ? false : true;
 				$dead = $d_isDead ? "§7(dead)§f" : "";
+				$arrow = " ➤➤ ";
+				if($dis < 1){
+					$arrow = " §d♥♥§f ";
+				}
 
-				$this->getServer()->broadCastMessage($d->getDisplayName().$dead." ➤➤ ".$p->getDisplayName()." (".$color.$dis."m§f)");
+				$this->getServer()->broadCastMessage($d->getDisplayName().$dead."{$arrow}".$p->getDisplayName()." (".$color.$dis."m§f)");
 				if($d_isDead === false){
 					$inv = $d->getInventory();
 					$inv->addItem(Item::get(332, 0, 16));
