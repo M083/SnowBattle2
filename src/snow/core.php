@@ -40,6 +40,8 @@ class core extends PluginBase implements Listener{
 
 	public static $nameList = [
 		"moyasan083" => "yudaruma334",
+		"Zmix00" => "Xx_masato1102_xX",
+		"nuyoppoi" => "negitorooi"
 	];
 
 	public function onEnable(){
