@@ -42,7 +42,10 @@ class core extends PluginBase implements Listener{
 		"moyasan083" => "yudaruma334",
 		"Zmix00" => "Xx_masato1102_xX",
 		"nuyoppoi" => "negitorooi",
-		"wakame0731" => "Tt_matsutake_tT"
+		"wakame0731" => "Tt_matsutake_tT",
+		"hhokkun" => "wwwXXXxx_GORIRA_xxXXXwww",
+		"tsukinomiya1206" => "mako427",
+		"EMOnemi" => "ikemenGO_"
 	];
 
 	public function onEnable(){
@@ -93,7 +96,8 @@ class core extends PluginBase implements Listener{
 		$this->player[$player->getName()] = [
 			"isBattle" => false
 		];
-		$player->sendMessage("§2やぁ、君も雪合戦しに来たのかい？暇人だねぇ...\nそこに鉄ブロックがあるからタップしなよ");
+		$player->sendMessage("§2やぁ、君も雪合戦しに来たのかい？暇人だねぇ...");
+		$player->sendMessage("§2そこに鉄ブロックがあるからタップしなよ");
 		$level = $player->getLevel();
 		$pos = $player->getSpawn();
 		$pos->y -= 1;
@@ -312,7 +316,7 @@ class core extends PluginBase implements Listener{
 
 			$player->setNameTag("");
 
-			$player->sendMessage("§2アイテムを配布したぞ！\n§2今すぐ雪玉を投げに行こう！");
+			$player->sendMessage("§2アイテムを配布したぞ！\n§2今すぐ雪玉を投げに行こう！\n§2スコップで雪をタップで雪玉を補充しよう！");
 		}
 
 		if($item->getid() == 256){
