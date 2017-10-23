@@ -41,7 +41,8 @@ class core extends PluginBase implements Listener{
 	public static $nameList = [
 		"moyasan083" => "yudaruma334",
 		"Zmix00" => "Xx_masato1102_xX",
-		"nuyoppoi" => "negitorooi"
+		"nuyoppoi" => "negitorooi",
+		"wakame0731" => "Tt_matsutake_tT"
 	];
 
 	public function onEnable(){
@@ -92,7 +93,7 @@ class core extends PluginBase implements Listener{
 		$this->player[$player->getName()] = [
 			"isBattle" => false
 		];
-		$player->sendMessage("§2やぁ、君も雪合戦しに来たのかい？暇人だねぇ...");
+		$player->sendMessage("§2やぁ、君も雪合戦しに来たのかい？暇人だねぇ...\nそこに鉄ブロックがあるからタップしなよ");
 		$level = $player->getLevel();
 		$pos = $player->getSpawn();
 		$pos->y -= 1;
