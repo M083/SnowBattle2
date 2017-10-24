@@ -59,7 +59,7 @@ class core extends PluginBase implements Listener{
 	public static $nameList = [
 		"moyasan083" => "§a鯖主の湯だるまです§r",
 		"Zmix00" => "Xx_masato1102_xX",
-		"nuyoppoi" => "§a➤➤ §b➤➤ §c➤➤ §d➤➤ §e➤➤ §1➤➤ §2➤➤ §3➤➤ §4➤➤ §5➤➤ §62➤➤ §r",
+		"nuyoppoi" => "§a➤➤ §b➤➤ §c➤➤ §d➤➤ §e➤➤ §1➤➤ §2➤➤ §3➤➤ §4➤➤ §5➤➤ §6➤➤ §r",
 		"wakame0731" => "Tt_matsutake_tT",
 		"hhokkun" => "【https://mobile.twitter.com/ma_ttya_】",
 		"tsukinomiya1206" => "mako427",
