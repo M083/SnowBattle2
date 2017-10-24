@@ -57,7 +57,7 @@ class core extends PluginBase implements Listener{
 	const MIN_Y = 62;
 
 	public static $nameList = [
-		"moyasan083" => "yudaruma334",
+		"moyasan083" => "§ayudaruma334§r",
 		"Zmix00" => "Xx_masato1102_xX",
 		"nuyoppoi" => "negitorooi",
 		"wakame0731" => "Tt_matsutake_tT",
@@ -71,7 +71,8 @@ class core extends PluginBase implements Listener{
 		"scyphas" => "中の人げえみんぐ中の人A",
 		"amayzom" => "rakutencardman",
 		"pupupu0328" => "Purasect00",
-		"jinp" => "NakanohitogamingB"
+		"jinp" => "NakanohitogamingB",
+		"Rancome152" => "§bRancome152§r"
 	];
 
 	public function onEnable(){
