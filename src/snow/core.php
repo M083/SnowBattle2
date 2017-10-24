@@ -222,11 +222,12 @@ class core extends PluginBase implements Listener{
 
 	public function EntityDamageEvent(EntityDamageEvent $event){
 		if($event instanceof EntityDamageByEntityEvent){
-			if($event->getCause() == 2 && $event instanceof EntityDamageByChildEntityEvent){
+			$d = $event->getDamager();
+			$p = $event->getEntity();
+				if($d !== $p && $event->getCause() == 2 && $event instanceof EntityDamageByChildEntityEvent){
 				$event->setDamage(20);
 				$level = $this->getServer()->getDefaultLevel();
-				$d = $event->getDamager();
-				$p = $event->getEntity();
+
 				$sound = clone $this->anvil;
 				$level->addSound($this->anvil->setComponents($d->x, $d->y, $d->z));
 
