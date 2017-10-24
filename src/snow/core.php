@@ -192,10 +192,10 @@ class core extends PluginBase implements Listener{
 				}
 				$e = $this->throwSnowball($entity->getOwningEntity(), $vec, $pos);
 
-				if(!isset($e->hit)){
+				if(!isset($entity->hit)){
 					$e->hit = 0;
 				}else{
-					$e->hit++;
+					$e->hit = $entity->hit+1;
 				}
 			}elseif(isset($entity->hit)){
 				$entity->hit++;
