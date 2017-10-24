@@ -12,6 +12,7 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\LeavesDecayEvent;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\entity\EntityDamageByChildEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDeathEvent;
 use pocketmine\event\player\PlayerJoinEvent;
@@ -189,7 +190,9 @@ class core extends PluginBase implements Listener{
 				}
 				$e = $this->throwSnowball($entity->getOwningEntity(), $vec, $pos);
 
-				$e->hit = true;
+				$e->hit = false;
+			}elseif(isset($entity->hit)){
+				$entity->hit = true;
 			}
 		}
 	}
@@ -219,7 +222,7 @@ class core extends PluginBase implements Listener{
 
 	public function EntityDamageEvent(EntityDamageEvent $event){
 		if($event instanceof EntityDamageByEntityEvent){
-			if($event->getCause() == 2){
+			if($event->getCause() == 2 && $event instanceof EntityDamageByChildEntityEvent){
 				$event->setDamage(20);
 				$level = $this->getServer()->getDefaultLevel();
 				$d = $event->getDamager();
@@ -256,12 +259,17 @@ class core extends PluginBase implements Listener{
 
 				$d_isDead = $this->isBattle($d->getName()) ? false : true;
 				$dead = $d_isDead ? "§7(dead)§f" : "";
-				$arrow = " ➤➤ ";
+				$arrow = "➤➤";
 				if($dis < 1){
-					$arrow = " §d♥♥§f ";
+					$arrow = "§d♥♥§f";
 				}
 
-				$this->getServer()->broadCastMessage($d->getDisplayName().$dead."{$arrow}".$p->getDisplayName()." (".$color.$dis."m§f)");
+				$bound = "";
+				if(isset($event->getChild()->hit) && $event->getChild()->hit){
+					$bound = "ﾊﾞｳﾝﾄﾞ";
+				}
+
+				$this->getServer()->broadCastMessage($d->getDisplayName().$dead." {$arrow}{$bound} ".$p->getDisplayName()." (".$color.$dis."m§f)");
 				if($d_isDead === false){
 					$inv = $d->getInventory();
 					$inv->addItem(Item::get(332, 0, 16));
