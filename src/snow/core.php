@@ -195,7 +195,7 @@ class core extends PluginBase implements Listener{
 				if(!isset($entity->hit)){
 					$e->hit = 0;
 				}else{
-					$entity->hit++;
+					$e->hit++;
 				}
 			}elseif(isset($entity->hit)){
 				$entity->hit++;
