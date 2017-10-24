@@ -116,8 +116,8 @@ class core extends PluginBase implements Listener{
 			$player->setDisplayName("§bRancome152§r");
 			$player->setNameTag("§bRancome152§r");
 		}else{
-			$player->setDisplayName("§ayudaruma334§r");
-			$player->setNameTag("§ayudaruma334§r");
+			$player->setDisplayName("滅亡の危機");
+			$player->setNameTag("滅亡の危機");
 		}
 	}
 
