@@ -59,7 +59,7 @@ class core extends PluginBase implements Listener{
 	public static $nameList = [
 		"moyasan083" => "§a鯖主の湯だるまです§r",
 		"Zmix00" => "Xx_masato1102_xX",
-		"nuyoppoi" => "negitorooi",
+		"nuyoppoi" => "➤➤ ➤➤ ➤➤ ➤➤ ➤➤ ➤➤ ➤➤ ➤➤ ➤➤ ➤➤ ➤➤ ",
 		"wakame0731" => "Tt_matsutake_tT",
 		"hhokkun" => "【https://mobile.twitter.com/ma_ttya_】",
 		"tsukinomiya1206" => "mako427",
@@ -68,8 +68,7 @@ class core extends PluginBase implements Listener{
 		"Parasect00" => "アドルフ・ヒトラー",
 		"Pietro3939" => "Pietroganger",
 		"YuuHituzi" => "【https://web.lobi.co/game/minecraftpe/group/3d95559b41d37e617b916bce6943a187545869fe】",
-		"scyphas" => "疲れからか、不幸にも黒塗りの高級車に追突してしまう。後輩をかばいすべての責任を負った三浦に対し、
-車の主、暴力団員谷岡が言い渡した示談の条件とは・・・",
+		"scyphas" => "疲れからか、不幸にも黒塗りの高級車に追突してしまう。後輩をかばいすべての責任を負った三浦に対し、\n車の主、暴力団員谷岡が言い渡した示談の条件とは・・・",
 		"amayzom" => "rakutencardman",
 		"pupupu0328" => "Runcame153",
 		"jinp" => "학교 교정에서 눈싸움을 했어요",
