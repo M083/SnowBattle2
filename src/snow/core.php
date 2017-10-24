@@ -57,7 +57,7 @@ class core extends PluginBase implements Listener{
 	const MIN_Y = 62;
 
 	public static $nameList = [
-		"moyasan083" => "§ayudaruma334§r",
+		"moyasan083" => "§a鯖主の湯だるまです§r",
 		"Zmix00" => "Xx_masato1102_xX",
 		"nuyoppoi" => "negitorooi",
 		"wakame0731" => "Tt_matsutake_tT",
@@ -65,14 +65,16 @@ class core extends PluginBase implements Listener{
 		"tsukinomiya1206" => "mako427",
 		"EMOnemi" => "ikemenGO_",
 		"N0poh" => "天照国照彦天火明櫛玉饒速日命",
-		"Parasect00" => "kirale_nisemono",
+		"Parasect00" => "アドルフ・ヒトラー",
 		"Pietro3939" => "Pietroganger",
 		"YuuHituzi" => "【https://web.lobi.co/game/minecraftpe/group/3d95559b41d37e617b916bce6943a187545869fe】",
 		"scyphas" => "中の人げえみんぐ中の人A",
 		"amayzom" => "rakutencardman",
-		"pupupu0328" => "Purasect00",
+		"pupupu0328" => "Runcame153",
 		"jinp" => "NakanohitogamingB",
-		"Rancome152" => "§bRancome152§r"
+		"Rancome152" => "§bRancome152§r",
+		"x1203x" => "パブロ・ディエーゴ・ホセ・フランシスコ・デ・パウラ・ホアン・ネポムセーノ・マリーア・デ・ロス・レメディオス・クリスピーン・クリスピアーノ、デ・ラ・サンティシマ・トリニダード・ルイス・イ・ピカソ",
+
 	];
 
 	public function onEnable(){
