@@ -22,13 +22,19 @@ use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerLoginEvent;
 
 # Other
+use pocketmine\Player;
 use pocketmine\math\Vector3;
 use pocketmine\block\Block;
 use pocketmine\item\Item;
 use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\entity\Effect;
+use pocketmine\entity\Entity;
 use pocketmine\entity\Snowball;
 use pocketmine\level\sound\AnvilFallSound;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\DoubleTag;
+use pocketmine\nbt\tag\FloatTag;
+use pocketmine\nbt\tag\ListTag;
 
 class core extends PluginBase implements Listener{
 
@@ -166,7 +172,49 @@ class core extends PluginBase implements Listener{
 			$des = clone $this->destroy;
 			$des->setComponents($entity->x, $entity->y, $entity->z);
 			$level->addParticle($des);
+			if(!isset($entity->hit) && $entity->getOwningEntity() instanceof Player){
+				$pos = $entity->getPosition();
+				$vec = new Vector3($entity->lastMotionX, $entity->lastMotionY, $entity->lastMotionZ);
+				if($level->getBlockIdAt(floor($entity->x+1), floor($entity->y), floor($entity->z)) !== 0
+				|| $level->getBlockIdAt(floor($entity->x-1), floor($entity->y), floor($entity->z)) !== 0){
+					$vec->x *= -1;
+				}
+				if($level->getBlockIdAt(floor($entity->x), floor($entity->y+1), floor($entity->z)) !== 0
+				|| $level->getBlockIdAt(floor($entity->x), floor($entity->y-1), floor($entity->z)) !== 0){
+					$vec->y *= -1;
+				}
+				if($level->getBlockIdAt(floor($entity->x), floor($entity->y), floor($entity->z+1)) !== 0
+				|| $level->getBlockIdAt(floor($entity->x), floor($entity->y), floor($entity->z-1)) !== 0){
+					$vec->z *= -1;
+				}
+				$e = $this->throwSnowball($entity->getOwningEntity(), $vec, $pos);
+
+				$e->hit = true;
+			}
 		}
+	}
+
+	public function throwSnowball(Player $player, Vector3 $directionVector, Vector3 $pos){
+		$nbt = new CompoundTag("", [
+			new ListTag("Pos", [
+				new DoubleTag("", $pos->x),
+				new DoubleTag("", $pos->y),
+				new DoubleTag("", $pos->z)
+			]),
+			new ListTag("Motion", [
+				new DoubleTag("", $directionVector->x),
+				new DoubleTag("", $directionVector->y),
+				new DoubleTag("", $directionVector->z)
+			]),
+			new ListTag("Rotation", [
+				new FloatTag("", $player->yaw),
+				new FloatTag("", $player->pitch)
+			]),
+		]);
+
+		$snowball = Entity::createEntity("Snowball", $player->getLevel(), $nbt, $player);
+		$snowball->spawnToAll();
+		return $snowball;
 	}
 
 	public function EntityDamageEvent(EntityDamageEvent $event){
