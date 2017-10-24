@@ -64,7 +64,7 @@ class core extends PluginBase implements Listener{
 		"hhokkun" => "wwwXXXxx_GORIRA_xxXXXwww",
 		"tsukinomiya1206" => "mako427",
 		"EMOnemi" => "ikemenGO_",
-		"N0poh" => "popipapu",
+		"N0poh" => "天照国照彦天火明櫛玉饒速日命",
 		"Parasect00" => "kirale_nisemono",
 		"Pietro3939" => "Pietroganger",
 		"YuuHituzi" => "【https://web.lobi.co/game/minecraftpe/group/3d95559b41d37e617b916bce6943a187545869fe】",
