@@ -108,9 +108,16 @@ class core extends PluginBase implements Listener{
 	public function Login(PlayerLoginEvent $event){
 		$player = $event->getPlayer();
 		$name = $player->getName();
-		if(isset(self::$nameList[$name])){
+/*		if(isset(self::$nameList[$name])){
 			$player->setDisplayName(self::$nameList[$name]);
 			$player->setNameTag(self::$nameList[$name]);
+		}*/
+		if($name === "Rancome152"){
+			$player->setDisplayName("§bRancome152§r");
+			$player->setNameTag("§bRancome152§r");
+		}else{
+			$player->setDisplayName("§ayudaruma334§r");
+			$player->setNameTag("§ayudaruma334§r");
 		}
 	}
 
