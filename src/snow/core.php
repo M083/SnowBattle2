@@ -47,6 +47,8 @@ class core extends PluginBase implements Listener{
 	public $p = null;
 	public $firstLogin = true;
 
+	public $bound = 1;
+
 	const MAX_X = -124;
 	const MAX_Z = 84;
 	const MIN_X = -179;
@@ -173,7 +175,7 @@ class core extends PluginBase implements Listener{
 			$des = clone $this->destroy;
 			$des->setComponents($entity->x, $entity->y, $entity->z);
 			$level->addParticle($des);
-			if(!isset($entity->hit) && $entity->getOwningEntity() instanceof Player){
+			if((!isset($entity->hit) || $entity->hit < $this->bound) && $entity->getOwningEntity() instanceof Player){
 				$pos = $entity->getPosition();
 				$vec = new Vector3($entity->lastMotionX, $entity->lastMotionY, $entity->lastMotionZ);
 				if($level->getBlockIdAt(floor($entity->x+1), floor($entity->y), floor($entity->z)) !== 0
@@ -190,9 +192,9 @@ class core extends PluginBase implements Listener{
 				}
 				$e = $this->throwSnowball($entity->getOwningEntity(), $vec, $pos);
 
-				$e->hit = false;
+				$e->hit = 0;
 			}elseif(isset($entity->hit)){
-				$entity->hit = true;
+				$entity->hit++;
 			}
 		}
 	}
