@@ -182,7 +182,7 @@ class core extends PluginBase implements Listener{
 			$des = clone $this->destroy;
 			$des->setComponents($entity->x, $entity->y, $entity->z);
 			$level->addParticle($des);
-			if((!isset($entity->hit) || $entity->hit < $this->bound) && $entity->getOwningEntity() instanceof Player){
+			if((!isset($entity->hit) || $entity->hit < $this->bound-1) && $entity->getOwningEntity() instanceof Player){
 				$pos = $entity->getPosition();
 				$vec = new Vector3($entity->lastMotionX, $entity->lastMotionY, $entity->lastMotionZ);
 				if($level->getBlockIdAt(floor($entity->x+1), floor($entity->y), floor($entity->z)) !== 0
