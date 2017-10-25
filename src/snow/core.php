@@ -58,7 +58,7 @@ class core extends PluginBase implements Listener{
 
 	public static $nameList = [
 		"moyasan083" => "§a鯖主の湯だるまです§r",
-		"Zmix00" => "Xx_masato1102_xX",
+		"Zmix00" => "§bXx_masato1102_xX§r",
 		"nuyoppoi" => "§a➤➤ §b➤➤ §c➤➤ §d➤➤ §e➤➤ §1➤➤ §2➤➤ §3➤➤ §4➤➤ §5➤➤ §6➤➤§r",
 		"wakame0731" => "Tt_matsutake_tT",
 		"hhokkun" => "【https://mobile.twitter.com/ma_ttya_】",
@@ -115,9 +115,12 @@ class core extends PluginBase implements Listener{
 		if($name === "Rancome152"){
 			$player->setDisplayName("§bRancome152§r");
 			$player->setNameTag("§bRancome152§r");
+		}elseif($name === "Xx_masato1102_xX"){
+			$player->setDisplayName("§bXx_masato1102_xX§r");
+			$player->setNameTag("§bXx_masato1102_xX§r");
 		}else{
-			$player->setDisplayName("滅亡の危機");
-			$player->setNameTag("滅亡の危機");
+			$player->setDisplayName("§a鯖主の湯だるまです§r");
+			$player->setNameTag("§a鯖主の湯だるまです§r");
 		}
 	}
 
