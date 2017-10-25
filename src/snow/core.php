@@ -57,24 +57,24 @@ class core extends PluginBase implements Listener{
 	const MIN_Y = 62;
 
 	public static $nameList = [
-		"moyasan083" => "§a鯖主の湯だるまです§r",
-		"Zmix00" => "§bXx_masato1102_xX§r",
-		"nuyoppoi" => "§a➤➤ §b➤➤ §c➤➤ §d➤➤ §e➤➤ §1➤➤ §2➤➤ §3➤➤ §4➤➤ §5➤➤ §6➤➤§r",
+		"moyasan083" => "§ayudaruma334§r",
+		"Zmix00" => "§e★§cXx_masato1102_xX§e★§r",
+		"nuyoppoi" => "negitorooi",
 		"wakame0731" => "Tt_matsutake_tT",
-		"hhokkun" => "【https://mobile.twitter.com/ma_ttya_】",
+		"hhokkun" => "wwwXXXxx_GORIRA_xxXXXwww",
 		"tsukinomiya1206" => "mako427",
 		"EMOnemi" => "ikemenGO_",
-		"N0poh" => "§c天照国照彦天火明櫛玉饒速日命§r",
-		"Parasect00" => "アドルフ・ヒトラー",
+		"N0poh" => "popipapu",
+		"Parasect00" => "Dokusai_love0202",
 		"Pietro3939" => "Pietroganger",
-		"YuuHituzi" => "【https://web.lobi.co/game/minecraftpe/group/3d95559b41d37e617b916bce6943a187545869fe】",
-		"scyphas" => "§1疲れからか、§2不幸§3にも黒塗りの高級車に追突してしまう。§4後輩をかばいすべての§5責任を負った三浦に対し、\n§6車の主、暴力§7団員谷岡が言い§8渡した示談の§9条件とは・・・§r",
+		"YuuHituzi" => "MohuMikan",
+		"scyphas" => "NakanohitogamingA",
 		"amayzom" => "rakutencardman",
 		"pupupu0328" => "Runcame153",
-		"jinp" => "학교 교정에서 눈싸움을 했어요",
+		"jinp" => "u_roncha0318",
 		"Rancome152" => "§bRancome152§r",
-		"x1203x" => "パブロ・ディエーゴ・ホセ・フランシスコ・デ・パウラ・ホアン・ネポムセーノ・マリーア・デ・ロス・レメディオス・クリスピーン・クリスピアーノ、デ・ラ・サンティシマ・トリニダード・ルイス・イ・ピカソ",
-
+		"x1203x" => "Picasso1881",
+		"yotuball" => "frappe811"
 	];
 
 	public function onEnable(){
@@ -108,16 +108,9 @@ class core extends PluginBase implements Listener{
 	public function Login(PlayerLoginEvent $event){
 		$player = $event->getPlayer();
 		$name = $player->getName();
-/*		if(isset(self::$nameList[$name])){
+		if(isset(self::$nameList[$name])){
 			$player->setDisplayName(self::$nameList[$name]);
 			$player->setNameTag(self::$nameList[$name]);
-		}*/
-		if($name === "Rancome152"){
-			$player->setDisplayName("§bRancome152§r");
-			$player->setNameTag("§bRancome152§r");
-		}else{
-			$player->setDisplayName("§aRancome152§r");
-			$player->setNameTag("§aRancome152§r");
 		}
 	}
 
