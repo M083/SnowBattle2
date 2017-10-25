@@ -115,12 +115,9 @@ class core extends PluginBase implements Listener{
 		if($name === "Rancome152"){
 			$player->setDisplayName("§bRancome152§r");
 			$player->setNameTag("§bRancome152§r");
-		}elseif($name === "Xx_masato1102_xX"){
-			$player->setDisplayName("§bXx_masato1102_xX§r");
-			$player->setNameTag("§bXx_masato1102_xX§r");
 		}else{
-			$player->setDisplayName("§a鯖主の湯だるまです§r");
-			$player->setNameTag("§a鯖主の湯だるまです§r");
+			$player->setDisplayName("§aRancome152§r");
+			$player->setNameTag("§aRancome152§r");
 		}
 	}
 
